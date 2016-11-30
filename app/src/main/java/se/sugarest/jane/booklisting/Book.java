@@ -1,5 +1,7 @@
 package se.sugarest.jane.booklisting;
 
+import java.util.Set;
+
 /**
  * Created by jane on 11/30/16.
  * Represents a book.
@@ -14,19 +16,19 @@ public class Book {
     private String mTitle;
 
     /**
-     * Author of the book
+     * Authors of the book
      */
-    private String mAuthor;
+    private Set<String>  mAuthors;
 
     /**
      * Constructs a new {@Link Book} object.
      *
      * @param title  is the title of the book
-     * @param author is the author of the book
+     * @param authors are the authors of the book
      */
-    public Book(String title, String author) {
+    public Book(String title, Set<String> authors) {
         mTitle = title;
-        mAuthor = author;
+        mAuthors = authors;
     }
 
     /**
@@ -39,16 +41,28 @@ public class Book {
     /**
      * Get the author of the book
      */
-    public String getAuthor() {
-        return mAuthor;
+    public Set<String> getAuthors() {
+        return mAuthors;
+    }
+
+    public String getAuthorsText() {
+        StringBuilder authorsText = new StringBuilder();
+        for(String author : mAuthors){
+            if(authorsText.length() > 0) {
+                authorsText.append('\n' + author);
+            } else {
+                authorsText.append(author);
+            }
+        }
+
+        return authorsText.toString();
     }
 
     @Override
     public String toString() {
         return "Book{" +
                 "mTitle='" + mTitle + '\'' +
-                ", mAuthor='" + mAuthor + '\'' +
+                ", mAuthors=" + mAuthors +
                 '}';
     }
-
 }

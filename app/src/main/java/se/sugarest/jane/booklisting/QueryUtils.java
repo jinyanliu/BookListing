@@ -16,7 +16,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by jane on 11/30/16.
@@ -152,10 +154,15 @@ public class QueryUtils {
                 String title = volumeInfo.getString("title");
 
                 // Extract the value for the key called "authors"
-                String authors = volumeInfo.getString("authors");
+                JSONArray authors = volumeInfo.getJSONArray("authors");
+
+                Set<String> authorsSet = new HashSet<>();
+                for(int j = 0; j<authors.length();j++){
+                    authorsSet.add(authors.getString(j));
+                }
 
                 // Create a new {@link Book} object with the title and authors from the JSON response.
-                Book book = new Book(title, authors);
+                Book book = new Book(title, authorsSet);
 
                 // Add the new {@link Book} to the list of books.
                 books.add(book);
