@@ -44,21 +44,24 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      */
     private TextView mEmptyStateTextView;
 
+    /**
+     * ProgressBar when loading data from web server
+     */
+    private View loadingIndicator;
+
     @Override
     public Loader<List<Book>> onCreateLoader(int id, Bundle args) {
 
-        Log.i(LOG_TAG,"TEST: onCreateLoader");
+        Log.i(LOG_TAG, "TEST: onCreateLoader");
 
         //Create a new loader for the given URL
         return new BookLoader(this, google_books_request_url);
-
-
     }
 
     @Override
     public void onLoadFinished(Loader<List<Book>> loader, List<Book> books) {
 
-        Log.i(LOG_TAG,"TEST: onLoadFinished");
+        Log.i(LOG_TAG, "TEST: onLoadFinished");
 
         //Hide loading indicator because the data has been loaded
         View loadingIndicator = findViewById(R.id.loading_spinner);
@@ -80,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoaderReset(Loader<List<Book>> loader) {
 
-        Log.i(LOG_TAG,"TEST: onLoaderReset");
+        Log.i(LOG_TAG, "TEST: onLoaderReset");
 
         mAdapter.clear();
     }
@@ -88,10 +91,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.i(LOG_TAG,"TEST: onCreate");
+        Log.i(LOG_TAG, "TEST: onCreate");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Hide loading indicator when start the app
+        loadingIndicator = findViewById(R.id.loading_spinner);
+        loadingIndicator.setVisibility(View.GONE);
 
         //When user is done editing, touch outside the editText on the screen, the keyboard disappear.
         EditText editText = (EditText) findViewById(R.id.search_item);
@@ -117,9 +124,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
         bookListView.setEmptyView(mEmptyStateTextView);
 
-        Button button= (Button) findViewById(R.id.search_button);
+        Button button = (Button) findViewById(R.id.search_button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                //Show loading indicator after clicking search button
+                loadingIndicator = findViewById(R.id.loading_spinner);
+                loadingIndicator.setVisibility(View.VISIBLE);
 
                 if (getSearchItem() == null) {
                     google_books_request_url = "";
@@ -127,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     google_books_request_url = "https://www.googleapis.com/books/v1/volumes?q=" + getSearchItem();
                 }
 
-                Log.i(LOG_TAG,"TEST: clickButton"+google_books_request_url);
+                Log.i(LOG_TAG, "TEST: clickButton" + google_books_request_url);
 
                 //Get a reference to the ConnectivityManager to check state of network connectivity
                 ConnectivityManager connMgr = (ConnectivityManager)
@@ -144,16 +155,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     //Initialize the loader. Pass in the int ID constant defined above and pass in null for
                     //the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
                     //because this activity implements the LoaderCallbacks interface).
-                    if(loaderManager.getLoader(BOOK_LOADER_ID) == null){
+                    if (loaderManager.getLoader(BOOK_LOADER_ID) == null) {
                         loaderManager.initLoader(BOOK_LOADER_ID, null, MainActivity.this);
-                    }else {
+                    } else {
                         loaderManager.restartLoader(BOOK_LOADER_ID, null, MainActivity.this);
                     }
 
                 } else {
                     //Otherwise, display error
                     //First, hide loading indicator so error message will be visible
-                    View loadingIndicator = findViewById(R.id.loading_spinner);
+                    loadingIndicator = findViewById(R.id.loading_spinner);
                     loadingIndicator.setVisibility(View.GONE);
 
                     //Update empty state with no connection error message
@@ -176,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      */
     public String getSearchItem() {
 
-        Log.i(LOG_TAG,"TEST: getSearchItem");
+        Log.i(LOG_TAG, "TEST: getSearchItem");
 
         EditText editText = (EditText) findViewById(R.id.search_item);
         return editText.getText().toString();
