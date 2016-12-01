@@ -42,7 +42,7 @@ public class BookLoader extends AsyncTaskLoader<List<Book>> {
 
         forceLoad();
 
-        Log.i(LOG_TAG,"TEST: onStartLoading");
+        Log.i(LOG_TAG, "TEST: onStartLoading");
     }
 
     /**
@@ -54,12 +54,12 @@ public class BookLoader extends AsyncTaskLoader<List<Book>> {
             return null;
         }
 
-        Log.i(LOG_TAG,"TEST: loadInBackground");
+        Log.i(LOG_TAG, "TEST: loadInBackground");
 
         //Perform the network request, parse the response, and extract a list of books.
         List<Book> books = QueryUtils.fetchBookData(mUrl);
 
-        Log.i(LOG_TAG,"TEST: fetchEarthquakeData");
+        Log.i(LOG_TAG, "TEST: fetchEarthquakeData");
 
         return books;
     }

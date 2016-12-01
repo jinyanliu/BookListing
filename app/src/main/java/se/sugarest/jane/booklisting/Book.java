@@ -39,12 +39,17 @@ public class Book {
     }
 
     /**
-     * Get the author of the book
+     * Get the authors of the book
      */
     public Set<String> getAuthors() {
         return mAuthors;
     }
 
+    /**
+     * get the names of the authors as strings output
+     *
+     * @return authors names as strings
+     */
     public String getAuthorsText() {
         StringBuilder authorsText = new StringBuilder();
         for (String author : mAuthors) {
@@ -54,7 +59,6 @@ public class Book {
                 authorsText.append(author);
             }
         }
-
         return authorsText.toString();
     }
 
@@ -65,4 +69,5 @@ public class Book {
                 ", mAuthors=" + mAuthors +
                 '}';
     }
+
 }
