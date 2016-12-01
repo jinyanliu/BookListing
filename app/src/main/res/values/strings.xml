@@ -9,4 +9,7 @@
 
     <!-- Text to display in the list when there are no internet connectivity [CHAR LIMIT=NONE] -->
     <string name="no_internet">No internet connection.</string>
+
+    <!-- Text to display in the list when there are no internet connectivity [CHAR LIMIT=NONE] -->
+    <string name="no_key_word">Please enter a key word.</string>
 </resources>

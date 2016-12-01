@@ -68,8 +68,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         View loadingIndicator = findViewById(R.id.loading_spinner);
         loadingIndicator.setVisibility(View.GONE);
 
-        // Set empty state text to display "No books found."
-        mEmptyStateTextView.setText(R.string.no_books);
+//        // Set empty state text to display "No books found."
+//        mEmptyStateTextView.setText(R.string.no_books);
+
+//        if (getSearchItem() == ""){
+//            mEmptyStateTextView.setText(R.string.no_key_word);
+//        }
 
         // Clear the adapter of previous book data
         mAdapter.clear();
@@ -78,6 +82,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // data set. This will trigger the ListView to update.
         if (books != null && !books.isEmpty()) {
             mAdapter.addAll(books);
+        } else if(getSearchItem()== null){
+            mEmptyStateTextView.setText(R.string.no_key_word);
+        }else{
+            mEmptyStateTextView.setText(R.string.no_books);
         }
     }
 
