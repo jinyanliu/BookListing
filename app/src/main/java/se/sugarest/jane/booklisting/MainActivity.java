@@ -155,18 +155,25 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
                 //If there is a network connection, fetch data
                 if (networkInfo != null && networkInfo.isConnected()) {
-                    //Get a reference to the LoaderManager, in order to interact with loaders.
-                    LoaderManager loaderManager = getLoaderManager();
 
-                    //Check if the loader is null, initialize the loader. Pass in the int ID constant defined above and pass in null for
-                    //the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
-                    //because this activity implements the LoaderCallbacks interface).
-                    //Otherwise, restart to use a different url with a different search key word.
-                    if (loaderManager.getLoader(BOOK_LOADER_ID) == null) {
-                        loaderManager.initLoader(BOOK_LOADER_ID, null, MainActivity.this);
-                    } else {
-                        loaderManager.restartLoader(BOOK_LOADER_ID, null, MainActivity.this);
-                    }
+                    Log.i(LOG_TAG,"TEST: restartLoader");
+
+                    restartLoader();
+
+//                    //Get a reference to the LoaderManager, in order to interact with loaders.
+//                    LoaderManager loaderManager = getLoaderManager();
+
+//                    //Check if the loader is null, initialize the loader. Pass in the int ID constant defined above and pass in null for
+//                    //the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
+//                    //because this activity implements the LoaderCallbacks interface).
+//                    //Otherwise, restart to use a different url with a different search key word.
+//                    if (loaderManager.getLoader(BOOK_LOADER_ID) == null) {
+//                        initLoader();
+//                        Log.i(LOG_TAG,"TEST: initLoader");
+//                    } else {
+//                        restartLoader();
+//                        Log.i(LOG_TAG,"TEST: restartLoader");
+//                    }
 
                 } else {
                     //Otherwise, display error
@@ -198,6 +205,28 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         EditText editText = (EditText) findViewById(R.id.search_item);
         return editText.getText().toString();
+    }
+
+//    private void initLoader(){
+//        //Get a reference to the LoaderManager, in order to interact with loaders.
+//        loaderManager = getLoaderManager();
+//        loaderManager.initLoader(BOOK_LOADER_ID, null, this);
+//    }
+//
+//    private void restartLoader(){
+//        //Get a reference to the LoaderManager, in order to interact with loaders.
+//        loaderManager = getLoaderManager();
+//        loaderManager.restartLoader(BOOK_LOADER_ID, null, this);
+//    }
+
+//    private void initLoader(){
+//        LoaderManager loaderManager = getLoaderManager();
+//        loaderManager.initLoader(BOOK_LOADER_ID, null, this);
+//    }
+
+    private void restartLoader(){
+        LoaderManager loaderManager = getLoaderManager();
+        loaderManager.restartLoader(BOOK_LOADER_ID, null, this);
     }
 
 }
