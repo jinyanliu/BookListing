@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     /**
      * URL for book data from the Google Books
      */
-    private String google_books_request_url = "https://www.googleapis.com/books/v1/volumes?q=";
+    private String google_books_request_url ;
 
     /**
      * Adapter for the list of books
