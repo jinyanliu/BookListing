@@ -2,7 +2,7 @@
     <string name="app_name">Book Listing</string>
 
     <!-- Search Hint for EditText. [CHAR LIMIT=NONE] -->
-    <string name="search_hint">Please enter book or author name.</string>
+    <string name="search_hint">Which book are you looking for?</string>
 
     <!-- Text to display in the list when there are no books [CHAR LIMIT=NONE] -->
     <string name="no_books">No books found.\n\nTry a different key word.</string>

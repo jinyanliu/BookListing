@@ -157,7 +157,7 @@ public class QueryUtils {
                 JSONArray authors = volumeInfo.getJSONArray("authors");
 
                 Set<String> authorsSet = new HashSet<>();
-                for(int j = 0; j<authors.length();j++){
+                for (int j = 0; j < authors.length(); j++) {
                     authorsSet.add(authors.getString(j));
                 }
 
@@ -184,7 +184,7 @@ public class QueryUtils {
      */
     public static List<Book> fetchBookData(String requestUrl) {
 
-        Log.i(LOG_TAG,"TEST: fetchBookData");
+        Log.i(LOG_TAG, "TEST: fetchBookData");
 
 //        try {
 //            Thread.sleep(2000);

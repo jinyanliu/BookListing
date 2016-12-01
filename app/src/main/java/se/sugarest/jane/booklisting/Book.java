@@ -18,12 +18,12 @@ public class Book {
     /**
      * Authors of the book
      */
-    private Set<String>  mAuthors;
+    private Set<String> mAuthors;
 
     /**
      * Constructs a new {@Link Book} object.
      *
-     * @param title  is the title of the book
+     * @param title   is the title of the book
      * @param authors are the authors of the book
      */
     public Book(String title, Set<String> authors) {
@@ -47,8 +47,8 @@ public class Book {
 
     public String getAuthorsText() {
         StringBuilder authorsText = new StringBuilder();
-        for(String author : mAuthors){
-            if(authorsText.length() > 0) {
+        for (String author : mAuthors) {
+            if (authorsText.length() > 0) {
                 authorsText.append('\n' + author);
             } else {
                 authorsText.append(author);

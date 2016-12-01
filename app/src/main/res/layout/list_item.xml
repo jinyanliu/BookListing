@@ -11,16 +11,17 @@
         android:id="@+id/book_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingRight="16dp"
         android:textSize="16sp"
-        tools:text="Pride and Prejudice"
-        android:layout_weight="1"/>
+        tools:text="Pride and Prejudice"/>
 
     <TextView
         android:id="@+id/book_author"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:textSize="16sp"
-        tools:text="Jane Austin"
-        android:layout_weight="1"/>
+        tools:text="Jane Austin"/>
 
 </LinearLayout>

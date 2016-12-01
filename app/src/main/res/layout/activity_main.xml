@@ -7,32 +7,62 @@
     android:focusableInTouchMode="true">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <!-- EditText for user to input search key. -->
             <EditText
                 android:id="@+id/search_item"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
                 android:hint="@string/search_hint"
                 android:inputType="textCapWords"
-                android:padding="16dp"
-                android:textColor="#757575"/>
+                android:textColor="#757575"
+                android:textSize="17sp"/>
 
             <Button
+                android:id="@+id/search_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search"
-                android:id="@+id/search_button"
-                android:clickable="true"/>
+                android:layout_gravity="right"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="Search"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingRight="16dp"
+                android:text="Book Title"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/book_author"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Authors"
+                android:textSize="16sp"/>
 
         </LinearLayout>
 
@@ -62,4 +92,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
+
 </RelativeLayout>
