@@ -5,7 +5,7 @@
     <string name="search_hint">Please enter book or author name.</string>
 
     <!-- Text to display in the list when there are no books [CHAR LIMIT=NONE] -->
-    <string name="no_books">No books found.</string>
+    <string name="no_books">No books found.\n\nTry a different key word.</string>
 
     <!-- Text to display in the list when there are no internet connectivity [CHAR LIMIT=NONE] -->
     <string name="no_internet">No internet connection.</string>
