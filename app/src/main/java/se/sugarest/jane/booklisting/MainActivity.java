@@ -128,6 +128,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                // Clear the adapter of previous book data
+                mAdapter.clear();
+
+                // Set empty state to blank screen.
+                mEmptyStateTextView.setText("");
+
                 //Show loading indicator after clicking search button
                 loadingIndicator = findViewById(R.id.loading_spinner);
                 loadingIndicator.setVisibility(View.VISIBLE);
@@ -152,9 +158,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     //Get a reference to the LoaderManager, in order to interact with loaders.
                     LoaderManager loaderManager = getLoaderManager();
 
-                    //Initialize the loader. Pass in the int ID constant defined above and pass in null for
+                    //Check if the loader is null, initialize the loader. Pass in the int ID constant defined above and pass in null for
                     //the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
                     //because this activity implements the LoaderCallbacks interface).
+                    //Otherwise, restart to use a different url with a different search key word.
                     if (loaderManager.getLoader(BOOK_LOADER_ID) == null) {
                         loaderManager.initLoader(BOOK_LOADER_ID, null, MainActivity.this);
                     } else {
