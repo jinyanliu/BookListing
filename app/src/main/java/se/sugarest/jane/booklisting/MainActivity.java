@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 if (getSearchItem() == null) {
                     google_books_request_url = "";
                 } else {
-                    google_books_request_url = "https://www.googleapis.com/books/v1/volumes?q=" + getSearchItem();
+                    google_books_request_url = "https://www.googleapis.com/books/v1/volumes?q=" + getSearchItem().replace(" ", "");
                 }
 
                 Log.i(LOG_TAG, "TEST: clickButton" + google_books_request_url);
