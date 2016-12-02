@@ -46,13 +46,13 @@ public class Book {
     }
 
     /**
-     * get the names of the authors as strings output
+     * Get the names of the authors as strings output
      *
      * @return authors names as strings
      */
     public String getAuthorsText() {
         StringBuilder authorsText = new StringBuilder();
-        for (String author : mAuthors) {
+        for (String author : getAuthors()) {
             if (authorsText.length() > 0) {
                 authorsText.append('\n' + author);
             } else {
@@ -69,5 +69,4 @@ public class Book {
                 ", mAuthors=" + mAuthors +
                 '}';
     }
-
 }

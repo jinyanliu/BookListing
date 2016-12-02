@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Book>> {
 
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     /**
      * URL for book data from the Google Books
      */
-    private String google_books_request_url ;
+    private String google_books_request_url;
 
     /**
      * Adapter for the list of books
@@ -52,9 +50,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<List<Book>> onCreateLoader(int id, Bundle args) {
-
-        Log.i(LOG_TAG, "TEST: onCreateLoader");
-
         //Create a new loader for the given URL
         return new BookLoader(this, google_books_request_url);
     }
@@ -62,46 +57,33 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<List<Book>> loader, List<Book> books) {
 
-        Log.i(LOG_TAG, "TEST: onLoadFinished");
-
         //Hide loading indicator because the data has been loaded
         View loadingIndicator = findViewById(R.id.loading_spinner);
         loadingIndicator.setVisibility(View.GONE);
-
-//        // Set empty state text to display "No books found."
-//        mEmptyStateTextView.setText(R.string.no_books);
-
-//        if (getSearchItem() == ""){
-//            mEmptyStateTextView.setText(R.string.no_key_word);
-//        }
 
         // Clear the adapter of previous book data
         mAdapter.clear();
 
         // If there is a valid list of {@link Book}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
+        // Else if there is a valid search key word, then show text with an ID no_books to the emptyTextView.
+        // Else there isn't an user input in the EditText View, then show text with an ID no_key_word to the emptyTextView.
         if (books != null && !books.isEmpty()) {
             mAdapter.addAll(books);
-        } else if(getSearchItem()!= null && !getSearchItem().isEmpty() ){
+        } else if (getSearchItem() != null && !getSearchItem().isEmpty()) {
             mEmptyStateTextView.setText(R.string.no_books);
-        }else{
+        } else {
             mEmptyStateTextView.setText(R.string.no_key_word);
         }
     }
 
     @Override
     public void onLoaderReset(Loader<List<Book>> loader) {
-
-        Log.i(LOG_TAG, "TEST: onLoaderReset");
-
         mAdapter.clear();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        Log.i(LOG_TAG, "TEST: onCreate");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -155,8 +137,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     google_books_request_url = "https://www.googleapis.com/books/v1/volumes?q=" + getSearchItem().replace(" ", "");
                 }
 
-                Log.i(LOG_TAG, "TEST: clickButton" + google_books_request_url);
-
                 //Get a reference to the ConnectivityManager to check state of network connectivity
                 ConnectivityManager connMgr = (ConnectivityManager)
                         getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -167,8 +147,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 //If there is a network connection, fetch data
                 if (networkInfo != null && networkInfo.isConnected()) {
 
-                    Log.i(LOG_TAG, "TEST: restartLoader");
-
                     //Get a reference to the LoaderManager, in order to interact with loaders.
                     LoaderManager loaderManager = getSupportLoaderManager();
 
@@ -178,10 +156,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     //Otherwise, restart to use a different url with a different search key word.
                     if (loaderManager.getLoader(BOOK_LOADER_ID) == null) {
                         initLoader();
-                        Log.i(LOG_TAG, "TEST: initLoader");
                     } else {
                         restartLoader();
-                        Log.i(LOG_TAG, "TEST: restartLoader");
                     }
 
                 } else {
@@ -193,10 +169,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     //Update empty state with no connection error message
                     mEmptyStateTextView.setText(R.string.no_internet);
                 }
-
             }
         });
-
     }
 
     //To hide Keyboard on the screen
@@ -209,9 +183,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      * This method is called to get search item.
      */
     public String getSearchItem() {
-
-        Log.i(LOG_TAG, "TEST: getSearchItem");
-
         EditText editText = (EditText) findViewById(R.id.search_item);
         return editText.getText().toString();
     }
@@ -227,5 +198,4 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         LoaderManager loaderManager = getSupportLoaderManager();
         loaderManager.restartLoader(BOOK_LOADER_ID, null, this);
     }
-
 }

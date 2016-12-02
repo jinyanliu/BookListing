@@ -38,7 +38,6 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:text="Search"/>
-
         </LinearLayout>
 
         <LinearLayout
@@ -63,7 +62,6 @@
                 android:layout_weight="1"
                 android:text="Authors"
                 android:textSize="16sp"/>
-
         </LinearLayout>
 
         <!-- Layout for a list of books. -->

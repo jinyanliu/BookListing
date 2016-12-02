@@ -156,6 +156,7 @@ public class QueryUtils {
                 // Extract the value for the key called "authors"
                 JSONArray authors = volumeInfo.getJSONArray("authors");
 
+                // Convert JSONArray into a HashSet
                 Set<String> authorsSet = new HashSet<>();
                 for (int j = 0; j < authors.length(); j++) {
                     authorsSet.add(authors.getString(j));
@@ -183,14 +184,6 @@ public class QueryUtils {
      * Query the Google Books dataset and return a list of {@link Book} objects.
      */
     public static List<Book> fetchBookData(String requestUrl) {
-
-        Log.i(LOG_TAG, "TEST: fetchBookData");
-
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
 
         // Create URL object
         URL url = createUrl(requestUrl);
