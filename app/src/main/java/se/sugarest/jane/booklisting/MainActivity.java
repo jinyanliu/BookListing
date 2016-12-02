@@ -82,10 +82,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // data set. This will trigger the ListView to update.
         if (books != null && !books.isEmpty()) {
             mAdapter.addAll(books);
-        } else if(getSearchItem()== null){
-            mEmptyStateTextView.setText(R.string.no_key_word);
-        }else{
+        } else if(getSearchItem()!= null && !getSearchItem().isEmpty() ){
             mEmptyStateTextView.setText(R.string.no_books);
+        }else{
+            mEmptyStateTextView.setText(R.string.no_key_word);
         }
     }
 
