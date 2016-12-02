@@ -64,16 +64,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Clear the adapter of previous book data
         mAdapter.clear();
 
-        // If there is a valid list of {@link Book}s, then add them to the adapter's
-        // data set. This will trigger the ListView to update.
-        // Else if there is a valid search key word, then show text with an ID no_books to the emptyTextView.
-        // Else there isn't an user input in the EditText View, then show text with an ID no_key_word to the emptyTextView.
-        if (books != null && !books.isEmpty()) {
-            mAdapter.addAll(books);
-        } else if (getSearchItem() != null && !getSearchItem().isEmpty()) {
-            mEmptyStateTextView.setText(R.string.no_books);
+        //If there is a network connection, fetch data
+        if (getNetworkInfo() != null && getNetworkInfo().isConnected()) {
+
+            if (books != null && !books.isEmpty()) {
+                mAdapter.addAll(books);
+            } else if (getSearchItem() != null && !getSearchItem().isEmpty()) {
+                mEmptyStateTextView.setText(R.string.no_books);
+            } else {
+                mEmptyStateTextView.setText(R.string.no_key_word);
+            }
+
         } else {
-            mEmptyStateTextView.setText(R.string.no_key_word);
+
+            //Update empty state with no connection error message
+            mEmptyStateTextView.setText(R.string.no_internet);
         }
     }
 
@@ -137,15 +142,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     google_books_request_url = "https://www.googleapis.com/books/v1/volumes?q=" + getSearchItem().replace(" ", "");
                 }
 
-                //Get a reference to the ConnectivityManager to check state of network connectivity
-                ConnectivityManager connMgr = (ConnectivityManager)
-                        getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                //Get details on the currently active default data network
-                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
                 //If there is a network connection, fetch data
-                if (networkInfo != null && networkInfo.isConnected()) {
+                if (getNetworkInfo() != null && getNetworkInfo().isConnected()) {
 
                     //Get a reference to the LoaderManager, in order to interact with loaders.
                     LoaderManager loaderManager = getSupportLoaderManager();
@@ -197,5 +195,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         //Get a reference to the LoaderManager, in order to interact with loaders.
         LoaderManager loaderManager = getSupportLoaderManager();
         loaderManager.restartLoader(BOOK_LOADER_ID, null, this);
+    }
+
+    private NetworkInfo getNetworkInfo() {
+        //Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        //Return details on the currently active default data network
+        return connMgr.getActiveNetworkInfo();
     }
 }
