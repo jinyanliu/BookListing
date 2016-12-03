@@ -153,13 +153,16 @@ public class QueryUtils {
                 // Extract the value for the key called "title"
                 String title = volumeInfo.getString("title");
 
-                // Extract the value for the key called "authors"
-                JSONArray authors = volumeInfo.getJSONArray("authors");
-
                 // Convert JSONArray into a HashSet
                 Set<String> authorsSet = new HashSet<>();
-                for (int j = 0; j < authors.length(); j++) {
-                    authorsSet.add(authors.getString(j));
+
+                if(volumeInfo.has("authors")) {
+                    // Extract the value for the key called "authors"
+                    JSONArray authors = volumeInfo.getJSONArray("authors");
+
+                    for (int j = 0; j < authors.length(); j++) {
+                        authorsSet.add(authors.getString(j));
+                    }
                 }
 
                 // Create a new {@link Book} object with the title and authors from the JSON response.
