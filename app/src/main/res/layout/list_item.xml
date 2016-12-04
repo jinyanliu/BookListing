@@ -17,7 +17,7 @@
         tools:text="Pride and Prejudice"/>
 
     <TextView
-        android:id="@+id/book_author"
+        android:id="@+id/book_authors"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
