@@ -42,9 +42,8 @@ public class BookAdapter extends ArrayAdapter<Book> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         //Check is the existing view is being reused, otherwise inflate the view
-        View listItemView = convertView;
-        if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
 
@@ -52,17 +51,17 @@ public class BookAdapter extends ArrayAdapter<Book> {
         Book currentBook = getItem(position);
 
         //Find the TextView in the list_item.xml layout with the ID book_title
-        TextView titleTextView = (TextView) listItemView.findViewById(R.id.book_title);
+        TextView titleTextView = (TextView) convertView.findViewById(R.id.book_title);
         //Display the title of the current book in that TextView.
         titleTextView.setText(currentBook.getTitle());
 
         //Find the TextView in the list_item.xml layout with the ID book_author
-        TextView authorTextView = (TextView) listItemView.findViewById(R.id.book_author);
+        TextView authorTextView = (TextView) convertView.findViewById(R.id.book_author);
         //Display the author of the current book in that TextView.
         authorTextView.setText(currentBook.getAuthorsText());
 
         //Return the list_item view layout (containing 2 TextViews)
         //so that it can be shown in the ListView
-        return listItemView;
+        return convertView;
     }
 }
