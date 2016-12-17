@@ -16,3 +16,8 @@ The JSON response is parsed to get the expected data.
 Exceptions like no network connection, no expected data, retrieving books information which has no authors information are handled. 
 
 StringBuilder method are covered because the retrieved authors information from JSON is in an array. 
+
+# App ScreenShots
+<img src="screenshots/EmptyStateNoKeyWord.png" width="25%" alt="EmptyStateNoKeyWord"/> <img src="screenshots/BookSearchResultJane.png" width="25%" alt="BookSearchResultJane"/> <img src="screenshots/BookSearchResultMy.png" width="25%" alt="BookSearchResultMy"/> <img src="screenshots/BookSearchResultMay.png" width="25%" alt="BookSearchResultMay"/> <img src="screenshots/EmptyStateNoBooksFound.png" width="25%" alt="EmptyStateNoBooksFound"/> <img src="screenshots/EmptyStateNoInternetConnectionBeforeSearch.png" width="25%" alt="EmptyStateNoInternetConnectionBeforeSearch"/> <img src="screenshots/EmptyStateNoInternetConnectionAfterSearch.png" width="25%" alt="EmptyStateNoInternetConnectionAfterSearch"/> <img src="screenshots/BookSearchResultHarryPotter.png" width="25%" alt="BookSearchResultHarryPotter"/> 
+
+<img src="screenshots/LandscapeView.png" width="50%" alt="Landscape view"/>
